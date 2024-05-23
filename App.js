@@ -3,17 +3,18 @@ import { StyleSheet, Text, View } from 'react-native';
 import { MyContextControllerProvider } from './Store';
 import MyRouter from './Router/MyRouter';
 import { NavigationContainer } from '@react-navigation/native';
+import { MenuProvider } from 'react-native-popup-menu';
 
 
 export default function App() {
   return (
     <MyContextControllerProvider>
       <NavigationContainer>
-        <MyRouter />
+        <MenuProvider>
+          <MyRouter />
+        </MenuProvider>
       </NavigationContainer>
     </MyContextControllerProvider>
-
-
   );
 }
 

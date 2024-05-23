@@ -1,30 +1,34 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { Menu, MenuOptions, MenuOption, MenuTrigger, MenuProvider } from 'react-native-popup-menu';
-import { Icon, IconButton } from 'react-native-paper';
+import { Icon } from 'react-native-paper';
+import { DeleteService } from '../Store/ServiceStore';
+
 
 const ServiceDetails = ({ route, navigation }) => {
     const { id, name, price, creator, time, finalTime } = route.params.item;
-    const [showMenu, setShowMenu] = useState(true);
+
+    const HanderDeleteService = () => {
+        DeleteService(id).then(() => {
+            navigation.navigate('Admin')
+        }).catch(() => {
+            console.log("Error delete")
+        })
+    }
     useEffect(() => {
         navigation.setOptions({
             headerRight: () => (
-
-                <MenuProvider>
-                    <Menu onSelect={value => alert(`Selected number: ${value}`)} >
-                        <MenuTrigger>
-                            <Icon icon="close"
-                                size={20} />
-                        </MenuTrigger>
-                        <MenuOptions >
-
-                            <MenuOption value={true} text='yes' />
-                            <MenuOption value={false}>
-                                <Text style={{ color: 'no' }}>Two</Text>
-                            </MenuOption>
-                        </MenuOptions>
-                    </Menu>
-                </MenuProvider>
+                <Menu>
+                    <MenuTrigger>
+                        <Icon source="delete" size={20} />
+                    </MenuTrigger>
+                    <MenuOptions style={styles.menu}>
+                        <MenuOption onSelect={() => {
+                            HanderDeleteService()
+                        }} text='Yes' />
+                        <MenuOption onSelect={() => alert('No')} text='No' />
+                    </MenuOptions>
+                </Menu>
             ),
         })
     }, [])
@@ -43,4 +47,10 @@ const ServiceDetails = ({ route, navigation }) => {
 
 export default ServiceDetails
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+    menu: {
+        flex: 1,
+        justifyContent: 'center',
+        alignContent: "center"
+    }
+})

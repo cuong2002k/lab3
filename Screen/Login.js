@@ -4,7 +4,9 @@ import { Button, HelperText, TextInput, IconButton } from "react-native-paper";
 import { CreateAccount, LoginAccount, useMycontextProvider } from "../Store";
 import COLORs from "../Component/COLOR";
 const Login = ({ navigation }) => {
-    const [email, onChangeEmail] = React.useState("admin@gmail.com");
+    // const [email, onChangeEmail] = React.useState("admin@gmail.com");
+    // const [password, onChangePassword] = React.useState("123456789");
+    const [email, onChangeEmail] = React.useState("customer@gmail.com");
     const [password, onChangePassword] = React.useState("123456789");
     const [showButton, setShowButton] = React.useState(false);
     const [showPassword, setShowPassword] = React.useState(true);

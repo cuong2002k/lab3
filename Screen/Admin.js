@@ -52,7 +52,7 @@ const Admin = ({ navigation }) => {
 
         return (
             <TouchableOpacity
-                style={[styles.row, { marginTop: 5, marginBottom: 5 }]}
+                style={[styles.row, { marginTop: 5, marginBottom: 5, borderWidth: 0.5, padding: 10, borderRadius: 10, borderRadius: 10 }]}
                 key={id}
                 onPress={() => navigation.navigate("ServiceDetail", { item: item })}
                 onLongPress={() => navigation.navigate("UpdateService", { item: item })}

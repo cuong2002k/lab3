@@ -95,10 +95,43 @@ const Logout = (dispatch) => {
     signOut(auth).then(() => dispatch({ type: "LOGOUT" }))
 }
 
+
+const GetAllAccount = () => {
+    return new Promise((resolve, reject) => {
+        const unsubscribe = onSnapshot(USERS,
+            (querySnapshot) => {
+                var arrAccount = [];
+                querySnapshot.forEach((item) => {
+                    const { email, password, name, role, phone, address } = item.data();
+                    if (role !== 'admin') {
+                        arrAccount.push({
+                            id: item.id,
+                            email: email,
+                            password: password,
+                            name: name,
+                            role: role,
+                            phone: phone,
+                            address: address
+                        });
+                    }
+                });
+                resolve(arrAccount);
+            },
+            (error) => {
+                console.log("Get All Account Error", error);
+                reject(error);
+            }
+        );
+        setTimeout(() => unsubscribe(), 1000);
+    });
+
+}
+
 export {
     MyContextControllerProvider,
     useMycontextProvider,
     CreateAccount,
     LoginAccount,
     Logout,
+    GetAllAccount
 }

@@ -10,6 +10,10 @@ import AddService from '../Screen/AddService';
 import ServiceDetails from '../Screen/ServiceDetails';
 import UpdateService from '../Screen/UpdateService';
 import Setting from '../Screen/Setting'
+import AdminRouter from './AdminRouter';
+import Appointment from '../Screen/Appointment';
+import CustomerRouter from './CustomerRouter';
+
 const Stack = createStackNavigator();
 const MyRouter = () => {
 
@@ -19,12 +23,12 @@ const MyRouter = () => {
                 options={{
                     headerStyle: { backgroundColor: COLORs.PINK }
                 }} />
-            <Stack.Screen name="Admin" component={Admin}
+            <Stack.Screen name="Admin" component={AdminRouter}
                 options={{
                     headerStyle: { backgroundColor: COLORs.PINK }
                 }}
             />
-            <Stack.Screen name="Customer" component={Customer}
+            <Stack.Screen name="Customer" component={CustomerRouter}
 
                 options={{
                     headerStyle: { backgroundColor: COLORs.PINK }
@@ -49,11 +53,12 @@ const MyRouter = () => {
                 }}
             />
 
-            <Stack.Screen name='Setting' component={Setting}
+            <Stack.Screen name='Appointment' component={Appointment}
                 options={{
                     headerStyle: { backgroundColor: COLORs.PINK }
                 }}
             />
+
         </Stack.Navigator>
     )
 }
